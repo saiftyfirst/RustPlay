@@ -4,11 +4,18 @@
 
 fn main() {
 
-    let x = plus_one(5);
-    println!("Value of x: {}", x);
+    for number in 1..4 {
+        println!("{}", number);
+    }
 
-}
+    for number in (1..5).rev() {
+        println!("{}", number);
+    }
 
-fn plus_one(x: i32) -> i32 {
-    x + 1 // Adding a semicolon means that the expression value is not returned
+    let a = [10, 20, 30, 40, 50];
+    for element in a.iter().rev() {
+        println!("this value is: {}", element);
+    }
+
+
 }
