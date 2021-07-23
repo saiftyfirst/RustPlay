@@ -1,37 +1,39 @@
-use std::io;
-use rand::Rng;
-use std::cmp::Ordering;
+// use std::io;
+// use rand::Rng;
+// use std::cmp::Ordering;
 
 fn main() {
 
-    println!("Guess the number!");
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
 
-    let secret_number: u32 = rand::thread_rng().gen_range(1..100);
+    let (_x, y, _z) = tup;
 
-    println!("The secret number is: {}", secret_number);
+    println!("The value of y is: {}", y);
 
+    println!("The value of x is: {}", tup.0);
+
+
+    // arrays
+    let months = ["January", "February", "March", "April"];
+    println!("2nd month is: {}", months[1]);
+
+    let a: [i32; 5] = [1, 2, 3, 4, 5];
+    println!("Length of array is: {}", a.len());
+
+    let b: [i32; 5] = [3; 5];
+    println!("Length of array is: {}", b.len());
+    let mut i = 0;
     loop {
-        println!("Please input your guess.");
-
-        let mut guess: String = String::new();
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue
-        };
-        println!("You guessed {}", guess);
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Equal => {
-                println!("You Win!");
-                break;
+        match i < b.len() {
+            true => {
+                println!("Element i: {}", b[i]);
+                i += 1;
             }
-            Ordering::Greater => println!("Too big!")
+            false => break
         }
     }
+
+
 
 
 }
