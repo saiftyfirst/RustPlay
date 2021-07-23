@@ -1,64 +1,56 @@
-/* ENUMS v1
-enum IpAddrKind {
-    V4,
-    V6
-}
-// ENUMS v1
-struct IpAddr {
-    kind: IpAddrKind,
-    address: String
-}
-*/
+use rand::distributions::Open01;
 
-enum IpAddrKind {
-    V4(u8, u8, u8, u8),
-    V6(String)
+#[derive(Debug)]
+enum UsState {
+    Alaska,
+    NewYork,
 }
 
-// struct Ipv4Addr {
-//     // --snip--
-// }
-//
-// struct Ipv6Addr {
-//     // --snip--
-// }
-//
-// enum IpAddr {
-//     V4(Ipv4Addr),
-//     V6(Ipv6Addr),
-// }
-
-enum Message {
-    Quit,
-    Move {x: i32, y: i32},
-    Write(String),
-    ChangeColor(i32, i32, i32)
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState)
 }
 
-impl Message {
-    fn call(&self) {
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter(state) => {
+            println!("State quarter from {:?}!", state);
+            25
+        }
+    }
+
+}
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i+1)
     }
 }
 
 fn main() {
 
-    /*    ENUMS v1
-    let home = IpAddrKind {
-        kind: IpAddrKind::V4,
-        address: String::from("127.0.0.1")
-    };
+    // value_in_cents(Coin::Penny);
+    // value_in_cents(Coin::Quarter(UsState::Alaska));
 
-    let loopback = IpAddrKind {
-        kind: IpAddrKind::V6,
-        address: String::from("::1")
-    };*/
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
 
-    let home = IpAddrKind::V4(127, 0, 0, 1);
-    let loopback = IpAddrKind::V6(String::from("::1"));
-
-    let m = Message::Write(String::from("hello"));
-    m.call();
+    let some_u8_value = 1;
+    match some_u8_value {
+        1 => println!("one"),
+        2 => println!("two"),
+        3 => println!("three"),
+        _ => ()
+    }
 
 }
+
 
 
